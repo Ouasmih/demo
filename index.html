@@ -2,19 +2,27 @@
 <html>
 <body>
   <h1>Free Adobe Templates!</h1>
-  <p>Loading your gift...</p>
-  
+  <p id="status">Testing connection...</p>
+
   <script>
-    // Simple test to verify the page works
-    alert("Page loaded successfully!");
+    // Target a SAFE endpoint first (no data modification)
+    const apiTest = "https://dc-api.adobe.io/healthcheck";
     
-  
-    fetch("https://dc-api.adobe.io/healthcheck", {
+    fetch(apiTest, {
       method: "GET",
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
+      credentials: "include"
     })
-    .then(res => console.log("API status:", res.status))
-    .catch(err => console.error("API error:", err));
+    .then(res => {
+      document.getElementById("status").textContent = 
+        `API Response: ${res.status} (${res.statusText})`;
+      console.log("Success! Headers:", [...res.headers.entries()]);
+    })
+    .catch(err => {
+      document.getElementById("status").textContent = 
+        `Error: ${err.message}`;
+      console.error("Failed:", err);
+    });
   </script>
 </body>
 </html>
